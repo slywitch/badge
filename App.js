@@ -1,6 +1,5 @@
-import { Component } from "react"
+import React, { Component } from "react"
 import {
-  AppRegistry,
   StyleSheet,
   View,
   Image,
@@ -32,21 +31,15 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{width:100, height:100,backgroundColor:'red',borderRadius: 50}}></View>
-        <Image style={{width:100, height:100,backgroundColor:'red',borderRadius: 50}}
-          source={require('./rosto.jpg')}></Image>
-        <Animated.View style={{width:40, height:40,backgroundColor:'black',borderRadius: 20,left: 0,top: 0,
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderColor: 'green',
-          borderWidth: 1,
-          position: 'absolute',
-          transform: { scale: this.state.badgeScale }  }}>
-          <Text style={{backgroundColor: 'black',color: 'white' }}>
-            {this.state.textValue}
-          </Text>
-        </Animated.View>
-        <Button title='Adicionar' onPress={() => this.animateBadge}></Button>
+        <View style={styles.espacamento}>
+          <View>
+            <Image style={styles.fundoImagem} source={require('./cart.png')}></Image>
+            <Animated.View style={styles.animacao}>
+              <Text style={styles.texto}>{this.state.textValue}</Text> 
+            </Animated.View>
+          </View>
+        </View>
+        <Button title='Adicionar' onPress={() => this.animateBadge()}></Button>
       </View>
     );
   }
@@ -54,9 +47,35 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: '1',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',    
+  },
+  espacamento: {
+    padding: 40/2,
+  },
+  fundoImagem: {
+    width:100,
+    height:100,
+    backgroundColor:'white',
+    borderRadius: 50,
+  },
+  animacao: {
+    position: 'absolute',
+    width:40,
+    height:40,
+    borderRadius: 20,
+    backgroundColor:'red', 
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'green',
+    borderWidth: 1,
+    left: 90-40/2,top: 0,
+    // transform: [{scale: this.state.badgeScale}],
+  },
+  texto: {
+    backgroundColor: 'transparent',
+    color: 'white', 
   },
 })
